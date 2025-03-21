@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Image Resizer</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Image Resizer</h1>
+        <div class="upload-section">
+            <input type="file" id="imageInput" accept="image/*" onchange="handleImageUpload(event)">
+            <label for="imageInput">Choose an Image</label>
+        </div>
+        <div class="options">
+            <label for="format">Output Format:</label>
+            <select id="format">
+                <option value="image/png">PNG</option>
+                <option value="image/jpeg">JPEG</option>
+                <option value="image/webp">WEBP</option>
+            </select>
+            <div class="resize-options">
+                <label><input type="radio" name="resizeMode" value="pixel" checked onchange="toggleMode()"> Resize by Pixels</label>
+                <label><input type="radio" name="resizeMode" value="size" onchange="toggleMode()"> Resize by Size (KB)</label>
+            </div>
+            <div id="pixelOptions">
+                <label for="width">Width (px):</label>
+                <input type="number" id="width" min="1" placeholder="Width">
+                <label for="height">Height (px):</label>
+                <input type="number" id="height" min="1" placeholder="Height">
+                <label><input type="checkbox" id="lockAspect" checked> Lock Aspect Ratio</label>
+            </div>
+            <div id="sizeOptions" style="display: none;">
+                <label for="targetSize">Target Size (KB):</label>
+                <input type="number" id="targetSize" min="1" placeholder="Target KB">
+            </div>
+        </div>
+        <button id="resizeBtn" onclick="resizeImage()" disabled>Resize Image</button>
+        <div id="preview" class="preview"></div>
+        <p id="fileSizeInfo" style="display: none; text-align: center;"></p>
+        <button id="downloadBtn" onclick="downloadImage()" style="display: none;">Download Resized Image</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
